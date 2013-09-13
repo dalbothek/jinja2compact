@@ -28,6 +28,11 @@ results in:
 </pre>
 ```
 
+## Installation
+jinja2compact is available on [pypi](https://pypi.python.org) and can be installed using [setuptools](https://pypi.python.org/pypi/setuptools):
+
+    $ easy_install jinja2compact
+
 ## Usage
 jinja2 allows extensions to be passed to the `Environment` constructor:
 ```python

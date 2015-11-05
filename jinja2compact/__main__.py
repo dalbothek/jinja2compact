@@ -41,4 +41,4 @@ template = env.from_string("""
     </html>
 """)
 
-print template.render(title=42, href='/', bold=True)
+print(template.render(title=42, href='/', bold=True))

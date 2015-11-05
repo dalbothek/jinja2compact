@@ -6,6 +6,9 @@
 # To Public License, Version 2, as published by Sam Hocevar. See
 # http://www.wtfpl.net/ for more details.
 
+# from https://github.com/nwilson5/jinja2compact/blob/master/jinja2compact/__init__.py
+# based on https://github.com/sadimusi/jinja2compact
+
 import re
 
 import jinja2
@@ -24,14 +27,14 @@ class Compact(ext.Extension):
                 stream.current.type == 'block_begin' and
                 stream.look().value in ('whitespace', 'endwhitespace')
             ):
-                stream.__next__()
+                next(stream)
                 if stream.current.value == 'whitespace':
                     verbose_depth += 1
                 else:
                     verbose_depth -= 1
                     if verbose_depth < 0:
                         raise self.error("Unexpected tag 'endverbose'")
-                stream.__next__()
+                next(stream)
                 if stream.current.type != 'block_end':
                     raise self.error(
                         "Unexpected token '%s', expected end of block" %
@@ -47,12 +50,12 @@ class Compact(ext.Extension):
                 if first:
                     first = False
                     if token.value.lower().startswith(" <!doctype "):
-                        token = lexer.Token(token.lineno, "data", 
+                        token = lexer.Token(token.lineno, "data",
                                             token.value[1:])
                 yield token
             else:
                 yield stream.current
-            stream.__next__()
+            next(stream)
 
 
     def error(self, message, stream):

@@ -24,14 +24,14 @@ class Compact(ext.Extension):
                 stream.current.type == 'block_begin' and
                 stream.look().value in ('whitespace', 'endwhitespace')
             ):
-                stream.next()
+                stream.__next__()
                 if stream.current.value == 'whitespace':
                     verbose_depth += 1
                 else:
                     verbose_depth -= 1
                     if verbose_depth < 0:
                         raise self.error("Unexpected tag 'endverbose'")
-                stream.next()
+                stream.__next__()
                 if stream.current.type != 'block_end':
                     raise self.error(
                         "Unexpected token '%s', expected end of block" %
@@ -52,7 +52,7 @@ class Compact(ext.Extension):
                 yield token
             else:
                 yield stream.current
-            stream.next()
+            stream.__next__()
 
 
     def error(self, message, stream):

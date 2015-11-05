@@ -7,7 +7,7 @@ setuptools.setup(
     name="jinja2compact",
     description="Reduce whitespace in jinja2 templates at compile time",
     url="https://github.com/sadimusi/jinja2compact",
-    version="1.0",
+    version="1.1",
     packages=setuptools.find_packages(),
     zip_safe=True,
     author="Simon Marti",
@@ -15,7 +15,7 @@ setuptools.setup(
     install_requires=("jinja2",),
     license="WTFPL",
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',

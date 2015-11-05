@@ -39,21 +39,22 @@ class Compact(ext.Extension):
                     )
             elif verbose_depth == 0 and stream.current.type == 'data':
                 # Reduce all whitespace to a single space
-                token = lexer.Token(stream.current.lineno, "data",
-                                    self.WHITESPACE.sub(" ", stream.current.value))
+                token = lexer.Token(
+                    stream.current.lineno, "data",
+                    self.WHITESPACE.sub(" ", stream.current.value)
+                )
 
                 # Special case to remove leading space before the doctype
                 # declaration in HTML documents
                 if first:
                     first = False
                     if token.value.lower().startswith(" <!doctype "):
-                        token = lexer.Token(token.lineno, "data", 
+                        token = lexer.Token(token.lineno, "data",
                                             token.value[1:])
                 yield token
             else:
                 yield stream.current
             stream.next()
-
 
     def error(self, message, stream):
         return jinja2.TemplateSyntaxError(
